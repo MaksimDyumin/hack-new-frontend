@@ -1,24 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
+// const {  Flex, Layout  } = antd;
+import { Route, Routes, Link } from 'react-router-dom';
+import NewsPage from './pages/NewsPage'
+import ArticlePage from './pages/ArticlePage';
 import './App.css';
+import { Layout, theme } from 'antd';
+import { CSSProperties } from 'react';
+const { Header, Content, Footer } = Layout;
+
 
 function App() {
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
+  const headerStyle: CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    color: 'white',
+    fontSize: '20px',
+  };
+  const contentStyle: CSSProperties = {
+    background: colorBgContainer,
+    maxWidth: '1240px',
+    width: '100%',
+    margin: 'auto',
+    minHeight: 280,
+    padding: 24,
+    borderRadius: borderRadiusLG,
+  };
+  const footerStyle: CSSProperties = {
+    display: 'flex',
+    textAlign: 'center',
+    color: '#fff',
+    backgroundColor: '#4096ff',
+    fontSize: '20px',
+  };
+  const layoutStyle = {
+    // borderRadius: 8,
+    overflow: 'hidden',
+    width: '100%',
+    minHeight: '100vh'
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Layout style={layoutStyle}>
+        <Header style={headerStyle} >Header</Header>
+        <Content style={contentStyle}><Routes>
+          <Route path='/' element={<NewsPage />} />
+          <Route path='article/:id' element={<ArticlePage />} />
+        </Routes></Content>
+        <Footer style={footerStyle} >Footer</Footer>
+      </Layout>
     </div>
   );
 }
