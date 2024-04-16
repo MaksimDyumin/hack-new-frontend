@@ -2,7 +2,6 @@ import { Button, message, Typography } from 'antd';
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import useAxios from "../useApi/useAxios";
-import { backendUrl } from "../app.config";
 import CommentsList from '../components/CommentsList';
 
 type Comment = {
@@ -21,8 +20,6 @@ type Article = {
 }
 
 const { Paragraph, Text } = Typography;
-
-// const baseUrl = instance.defaults.baseURL
 
 function ArticlePage() {
   const [article, setArticle] = useState<Article | null>(null);
@@ -53,14 +50,12 @@ function ArticlePage() {
             <p>Рейтинг: {article.rating}</p>
             <p>Дата: {article.date.toLocaleString()}</p>
             <p>Количество комментариев: {article.comments.length}</p>
-
-            {/* Другие свойства */}
           </>) : (
             <p>Загрузка данных...</p>
           )}
         </div>
         <div className="link-container">
-          <Paragraph style={{ fontSize: '20px' }} copyable>{backendUrl + location.pathname}</Paragraph>
+          <Paragraph style={{ fontSize: '20px' }} copyable>{'http://localhost:3000' + location.pathname}</Paragraph>
         </div>
       </div>
       <div className="comments-container">

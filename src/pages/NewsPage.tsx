@@ -51,9 +51,9 @@ function NewsPage() {
         articles.map((item, index) => (
           <li onClick={() => handleClick(item)} style={liStyles} key={index}>
             <Card title={item.headline} bordered={false} style={{ width: '100%' }}>
-              <p>rating: {item.rating}</p>
-              <p>author: {item.author}</p>
-              <p>date: {item.date.toLocaleString()}</p>
+              <p>Райтинг: {item.rating}</p>
+              <p>Автор: {item.author}</p>
+              <p>Дата: {item.date.toLocaleString()}</p>
             </Card>
           </li>
         ))

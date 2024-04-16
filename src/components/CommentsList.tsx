@@ -1,4 +1,5 @@
 import React from 'react';
+import { Card } from "antd";
 
 type Comment = {
   article: string;
@@ -14,14 +15,14 @@ const CommentsList: React.FC<CommentsListProps> = ({ comments }) => {
   return (
     <div>
       <h2>Список комментариев</h2>
-      <ul>
-        {comments.map((comment, index) => (
-          <li key={index}>
-            <p>Статья: {comment.article}</p>
-            <p>Текст: {comment.text}</p>
-            <p>Родитель: {comment?.parent}</p>
-          </li>
-        ))}
+      <ul className='comments-container'>
+        <Card>
+          {comments.map((comment, index) => (
+            <li key={index}>
+              <p>Текст: {comment.text}</p>
+            </li>
+          ))}
+        </Card>
       </ul>
     </div>
   );
